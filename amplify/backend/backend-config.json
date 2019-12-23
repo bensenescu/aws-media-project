@@ -1,0 +1,9 @@
+{
+	"auth": {
+		"mediaprojectdde4ed4d": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": []
+		}
+	}
+}
