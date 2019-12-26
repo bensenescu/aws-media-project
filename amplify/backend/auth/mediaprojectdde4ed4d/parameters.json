@@ -1,6 +1,6 @@
 {
     "identityPoolName": "mediaprojectdde4ed4d_identitypool_dde4ed4d",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "mediapdde4ed4d",
     "userPoolName": "mediaprojectdde4ed4d_userpool_dde4ed4d",
     "autoVerifiedAttributes": [
