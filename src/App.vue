@@ -1,10 +1,6 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/auth">Sign up / Login</router-link>
-    </div>
+    <the-navigation/>
     <router-view/>
   </div>
 </template>
@@ -12,55 +8,45 @@
 <script>
 import { AmplifyEventBus } from 'aws-amplify-vue';
 import { Auth } from 'aws-amplify';
+import TheNavigation from './components/TheNavigation.vue';
 
 export default {
   name: 'app',
-  data() {
-    return {
-      signedIn: false,
-    };
+  components: {
+    TheNavigation,
   },
-  beforeCreate() {
+  created() {
     AmplifyEventBus.$on('authState', (info) => {
+      this.setCurrentUser();
       if (info === 'signedIn') {
-        this.signedIn = true;
         this.$router.push('/profile');
       }
       if (info === 'signedOut') {
         this.$router.push('/auth');
-        this.signedIn = false;
       }
     });
-    Auth.currentAuthenticatedUser()
-      .then(() => {
-        this.signedIn = true;
-      })
-      .catch(() => {
-        this.signedIn = false;
-      });
+    this.setCurrentUser();
+  },
+  methods: {
+    setCurrentUser() {
+      Auth.currentAuthenticatedUser()
+        .then((user) => {
+          this.$store.commit('user/setSignedIn', { signedIn: true });
+          this.$store.commit('user/setUser', { user });
+        })
+        .catch(() => {
+          this.$store.commit('user/setSignedIn', { signedIn: false });
+        });
+    },
   },
 };
 </script>
 
 <style lang="less">
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: 'Montserrat';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
 }
 </style>

@@ -1,6 +1,10 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Home from '../views/Home.vue';
+import HomeView from '../views/HomeView.vue';
+import ProfileView from '../views/ProfileView.vue';
+import ProfileContent from '../components/profile/ProfileContent.vue';
+import ProfileSettings from '../components/profile/ProfileSettings.vue';
+import ProfileUploadMedia from '../components/profile/ProfileUploadMedia.vue';
 import Auth from '../views/Auth.vue';
 
 Vue.use(VueRouter);
@@ -9,20 +13,33 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: Home,
-  },
-  {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
+    component: HomeView,
   },
   {
     path: '/auth',
     name: 'auth',
     component: Auth,
+  },
+  {
+    path: '/profile',
+    component: ProfileView,
+    children: [
+      {
+        path: '',
+        name: 'profile',
+        component: ProfileContent,
+      },
+      {
+        path: '/upload',
+        name: 'profile-upload-media',
+        component: ProfileUploadMedia,
+      },
+      {
+        path: '/settings',
+        name: 'profile-settings',
+        component: ProfileSettings,
+      },
+    ],
   },
 ];
 
