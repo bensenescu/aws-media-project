@@ -11,10 +11,10 @@ export default {
     Auth.currentAuthenticatedUser()
       .then(() => {
         this.$router.push({ name: 'profile' });
-      })
-      .catch((error) => {
-        console.log(typeof error);
       });
+    // .catch((error) => {
+    //   console.log(typeof error);
+    // });
   },
 };
 </script>
