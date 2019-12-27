@@ -43,10 +43,11 @@ export default {
 </script>
 
 <style lang="less">
+@import './less/constants.less';
 #app {
   font-family: 'Montserrat';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-align: center;
+  height: 100%;
+  background: linear-gradient( white, white, white, #C4C4C4 );
 }
 </style>
