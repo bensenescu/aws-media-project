@@ -9,8 +9,8 @@
 export default {
   name: 'profile-upload-media',
   methods: {
-    fileUpload(path) {
-      console.log(path);
+    fileUpload() {
+      //   console.log(path);
     },
   },
 };
