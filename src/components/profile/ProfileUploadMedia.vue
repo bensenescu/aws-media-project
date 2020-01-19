@@ -1,18 +1,23 @@
 <template>
-    <div>
+    <div class="upload-container">
         <h2>Upload Media</h2>
-        <!-- <amplify-photo-picker
-          :photoPickerConfig="photoPickerConfig"
-          v-on:fileUpload="localMedia.s3Path = $event"/> -->
         <img v-if="isFileImage" :src="photoUrl" class="image-container"/>
-        <input type="file" ref="fileInput" accept="image/*, video/*" v-on:change="pick">
-        <input type="text" placeholder="Name" v-model="localMediaMeta.name">
-        <input type="text" placeholder="Description" v-model="localMediaMeta.description">
-        <button :disabled="saveFileLoading" v-on:click="saveFile">Submit</button>
-        <!-- <amplify-s3-image
-          v-for="mediaFile in mediaFiles"
-          :key="mediaFile.id"
-          :imagePath="`/${mediaFile.s3Path}`" /> -->
+        <input
+          type="file"
+          ref="fileInput"
+          accept="image/*, video/*"
+          class="center-with-padding"
+          v-on:change="pick">
+        <input type="text" placeholder="Name" class="text-input" v-model="localMediaMeta.name">
+        <input
+          type="text"
+          placeholder="Description"
+          class="text-input"
+          v-model="localMediaMeta.description">
+        <button
+          :disabled="saveFileLoading"
+          class="center-with-margin"
+          v-on:click="saveFile">Submit</button>
     </div>
 </template>
 
@@ -32,31 +37,9 @@ export default {
         name: '',
         description: '',
       },
-      mediaFiles: [],
-      mediaUrls: [],
       saveFileLoading: false,
       error: '',
     };
-  },
-  created() {
-    Api.getMedia()
-      .then((res) => {
-        this.mediaFiles = res;
-      });
-    // Promise.all(this.mediaFiles.map(async ({ s3Path }) => {
-    //   const url = await Storage.get(s3Path)
-    //     .catch((error) => {
-    //       this.error = error;
-    //     });
-    //   console.log('url', url);
-    //   return url;
-    // }))
-    //   .then((res) => {
-    //     this.mediaUrls = res;
-    //   })
-    //   .catch((error) => {
-    //     this.error = error;
-    //   });
   },
   computed: {
     ...mapState('user', {
@@ -151,18 +134,31 @@ export default {
 @import '../../less/app.less';
 
 .upload-container {
+    grid-column-start: 2;
+    grid-row: 1 / span 3;
+    justify-self: center;
     font-size: 18px;
-}
-.image-container {
-    height: 10em;
-    border: solid;
-    border-width: .5em;
-    border-color: @mediaLightGrey;
-
-    img {
-        width: auto;
-        height: 100%;
-    }
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 50%;
+    height: 13.5em;
 }
 
+.text-input {
+  background-color: white;
+  border: solid;
+  border-width: .2em;
+  border-color: @mediaLightGrey;
+}
+button {
+  background-color: @mediaPink;
+  width: 5em;
+}
+.center-with-margin {
+  margin: 0 38%;
+}
+.center-with-padding {
+  padding: 0 38%;
+}
 </style>

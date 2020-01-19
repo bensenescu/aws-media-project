@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = 'http://localhost:3000/api';
+const baseUrl = 'http://localhost:8081/api';
 
 async function createMedia(media) {
   try {
