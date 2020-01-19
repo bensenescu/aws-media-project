@@ -4,18 +4,23 @@ import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
 const HomeView = () => Promise.resolve(import('../views/HomeView.vue'));
+const PhotosView = () => Promise.resolve(import('../views/PhotosView.vue'));
 const Auth = () => Promise.resolve(import('../views/Auth.vue'));
 const ProfileView = () => Promise.resolve(import('../views/ProfileView.vue'));
 const ProfileContent = () => Promise.resolve(import('../components/profile/ProfileContent.vue'));
 const ProfileSettings = () => Promise.resolve(import('../components/profile/ProfileSettings.vue'));
 const ProfileUploadMedia = () => Promise.resolve(import('../components/profile/ProfileUploadMedia.vue'));
 
-
 const routes = [
   {
     path: '/',
     name: 'home',
     component: HomeView,
+  },
+  {
+    path: '/photos',
+    name: 'photos-view',
+    component: PhotosView,
   },
   {
     path: '/auth',

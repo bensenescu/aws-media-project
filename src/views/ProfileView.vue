@@ -1,7 +1,7 @@
 <template>
     <div class="profile-container">
         <profile-nav class="nav"/>
-        <router-view class="content"/>
+        <router-view />
     </div>
 </template>
 
@@ -22,14 +22,11 @@ export default {
     display: grid;
     grid-template-columns: 20% 60% 20%;
     grid-template-rows: 47.5% 47.5%;
+    height: 100%;
 
     .nav {
         grid-column-start: 1;
         grid-row-start: 1;
-    }
-
-    .content {
-        grid-column-start: 2;
     }
 }
 </style>
