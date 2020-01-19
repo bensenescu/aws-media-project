@@ -3,12 +3,14 @@
     <div class="imageContainer">
       <h2>Photos</h2>
       <router-link :to="{name: 'photos-view'}">
-        <img src="../assets/images/desert.jpg" />
+        <img src="https://media-projecte3577ba9ab8c460ebc91cb311da648f6dev-dev.s3.amazonaws.com/public/static/desert.jpg" />
       </router-link>
     </div>
     <div class="imageContainer ">
       <h2>Videos</h2>
-      <img src="../assets/images/ferris-wheel.jpg" style="cursor: not-allowed"/>
+      <img
+        src="https://media-projecte3577ba9ab8c460ebc91cb311da648f6dev-dev.s3.amazonaws.com/public/static/ferris-wheel.jpg"
+        style="cursor: not-allowed"/>
     </div>
   </div>
 </template>

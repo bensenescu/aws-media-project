@@ -1,6 +1,7 @@
 import axios from 'axios';
+import envConfig from '../envConfig';
 
-const baseUrl = 'http://localhost:8081/api';
+const baseUrl = envConfig.apiUrl;
 
 async function createMedia(media) {
   try {
