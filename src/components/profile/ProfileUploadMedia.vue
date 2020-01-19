@@ -105,7 +105,6 @@ export default {
         };
 
         const media = await Api.createMedia(mediaBody);
-        console.log('fileUploaded', media);
         this.mediaFiles.unshift(media);
       } catch (error) {
         this.error = error;
