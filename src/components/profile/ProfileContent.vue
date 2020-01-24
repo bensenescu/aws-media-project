@@ -1,7 +1,7 @@
 <template>
   <div class="center-item">
     <h2>Photos</h2>
-    <div class="flex-row">
+    <div v-if="mediaUrls" class="flex-row">
         <img
             v-show="currentFirstIndex > 0"
             src="../../assets/arrowLeft.svg"
@@ -16,6 +16,7 @@
             class="arrow"
             v-on:click="updateIndex('increase')" />
     </div>
+    <h3 v-else>You haven't uploaded any photos!</h3>
     <h2>Videos</h2>
     <h3>This functionality is coming soon!</h3>
   </div>
@@ -34,15 +35,16 @@ export default {
     };
   },
   created() {
-    this.getMedia();
+    console.log('getUserMedia');
+    this.getUserMedia();
   },
   computed: {
     ...mapState('media', {
-      mediaFiles: 'mediaFiles',
+      userMediaFiles: 'userMediaFiles',
     }),
     mediaUrls() {
       const s3BucketUrl = 'https://media-projecte3577ba9ab8c460ebc91cb311da648f6dev-dev.s3.amazonaws.com/public/';
-      return this.mediaFiles.map(({ s3Path }) => `${s3BucketUrl}${s3Path}`);
+      return this.userMediaFiles.map(({ s3Path }) => `${s3BucketUrl}${s3Path}`);
     },
     shownImages() {
       return this.mediaUrls.slice(this.currentFirstIndex,
@@ -51,7 +53,7 @@ export default {
   },
   methods: {
     ...mapActions('media', {
-      getMedia: 'getMedia',
+      getUserMedia: 'getUserMedia',
     }),
     updateIndex(action) {
       if (action === 'increase') {

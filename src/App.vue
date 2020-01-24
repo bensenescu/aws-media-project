@@ -48,6 +48,6 @@ export default {
   font-family: 'Montserrat';
   text-align: center;
   height: 100%;
-  background: linear-gradient( white, white, white, #C4C4C4 );
+  //background: linear-gradient( white, white, white, #C4C4C4 );
 }
 </style>
