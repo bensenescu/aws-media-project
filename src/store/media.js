@@ -42,7 +42,6 @@ export default {
       try {
         const { username } = rootState.user;
         const mediaFiles = await Api.getUserMedia(username);
-        console.log(mediaFiles);
         commit(mutationTypes.setUserMediaFiles, { mediaFiles });
       } catch (error) {
         commit(mutationTypes.setError, { error });
