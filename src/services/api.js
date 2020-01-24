@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Auth } from 'aws-amplify';
 import envConfig from '../envConfig';
 
 const baseUrl = envConfig.apiUrl;
@@ -21,7 +22,17 @@ async function getOneMedia(username, mediaId) {
   }
 }
 
-async function getMedia() {
+async function getUserMedia() {
+  try {
+    const { username } = await Auth.currentAuthenticatedUser();
+    const { data } = await axios.get(`${baseUrl}/media?username=${username}`);
+    return data;
+  } catch (error) {
+    return { error: `Get User Media Failed: ${error}` };
+  }
+}
+
+async function getAllMedia() {
   try {
     const { data } = await axios.get(`${baseUrl}/media`);
     return data;
@@ -46,7 +57,8 @@ async function deleteMedia(username, mediaId) {
 export default {
   createMedia,
   getOneMedia,
-  getMedia,
+  getAllMedia,
+  getUserMedia,
   // updateMedia,
   deleteMedia,
 };

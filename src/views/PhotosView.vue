@@ -23,20 +23,20 @@ export default {
     };
   },
   created() {
-    this.getMedia();
+    this.getAllMedia();
   },
   computed: {
     ...mapState('media', {
-      mediaFiles: 'mediaFiles',
+      allMediaFiles: 'allMediaFiles',
     }),
     mediaUrlsAndNames() {
       const s3BucketUrl = 'https://media-projecte3577ba9ab8c460ebc91cb311da648f6dev-dev.s3.amazonaws.com/public/';
-      return this.mediaFiles.map(file => ({ url: `${s3BucketUrl}${file.s3Path}`, name: file.name }));
+      return this.allMediaFiles.map(file => ({ url: `${s3BucketUrl}${file.s3Path}`, name: file.name }));
     },
   },
   methods: {
     ...mapActions('media', {
-      getMedia: 'getMedia',
+      getAllMedia: 'getAllMedia',
     }),
   },
 };
