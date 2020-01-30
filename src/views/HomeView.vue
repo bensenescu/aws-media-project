@@ -2,7 +2,7 @@
   <!-- <div class="home"> -->
   <div class="flex-col">
     <h3>Waiting on SSL Certifacte from ACM for my api...</h3>
-    <h3>The project should be up and running by 1/27.</h3>
+    <h3>The project should be up and running by 2/5.</h3>
     <h3>In the meantime, check out my github repos linked below:</h3>
     <a href="https://github.com/bensenescu/aws-media-project">Vue.js Frontend</a>
     <a href="https://github.com/bensenescu/media-project-api">Node.js Api</a>
